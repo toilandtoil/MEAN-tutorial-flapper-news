@@ -7,4 +7,10 @@ var PostSchema = new mongoose.Schema({
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
 });
 
+// add one to the upvote count then save it
+PostSchema.methods.upvote = function(cb) {
+    this.upvotes += 1;
+    this.save(cb);
+};
+
 mongoose.model('Post', PostSchema);
